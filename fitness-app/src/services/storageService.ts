@@ -8,7 +8,9 @@ const STORAGE_KEYS = {
   ROUTINES: 'fitness_routines',
 };
 
-export const DEFAULT_SHEETS_URL = process.env.NEXT_PUBLIC_SHEETS_API_URL || '';
+export const DEFAULT_SHEETS_URL =
+  process.env.NEXT_PUBLIC_SHEETS_API_URL ||
+  'https://script.google.com/macros/s/AKfycbxhS1xRBOQ7vsT9xJ_JUL2jPCDXoN_UnFor_LEBoHk1gYwd5CIG-EMB7rkZCesUXqN3/exec';
 
 export const defaultSettings: UserSettings = {
   dailyCalorieTarget: 2000,
