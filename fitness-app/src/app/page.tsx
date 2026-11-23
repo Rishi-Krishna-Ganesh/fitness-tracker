@@ -783,6 +783,7 @@ export default function Home() {
         settings={settings}
         onSaveSettings={(newSettings) => {
           setSettings(newSettings);
+          saveToLocal(STORAGE_KEYS.SETTINGS, newSettings);
           if (newSettings.sheetsApiUrl) {
             handleRemoteSync(newSettings.sheetsApiUrl);
           }

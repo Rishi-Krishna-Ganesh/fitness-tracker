@@ -8,9 +8,7 @@ const STORAGE_KEYS = {
   ROUTINES: 'fitness_routines',
 };
 
-export const DEFAULT_SHEETS_URL =
-  process.env.NEXT_PUBLIC_SHEETS_API_URL ||
-  'https://script.google.com/macros/s/AKfycbw-H-dFtr0G_jiN0YgqdS8_GAf0rZ_FTmFGSs6Nkrl0us0_5SPGhCsl_NrZpYda9mT6/exec';
+export const DEFAULT_SHEETS_URL = process.env.NEXT_PUBLIC_SHEETS_API_URL || '';
 
 export const defaultSettings: UserSettings = {
   dailyCalorieTarget: 2000,
@@ -85,8 +83,12 @@ export class SheetsService {
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem(STORAGE_KEYS.SETTINGS);
       if (stored) {
-        const parsed = JSON.parse(stored);
-        if (parsed.sheetsApiUrl && parsed.sheetsApiUrl.trim()) return parsed.sheetsApiUrl.trim();
+        try {
+          const parsed = JSON.parse(stored);
+          if (parsed.sheetsApiUrl && parsed.sheetsApiUrl.trim()) {
+            return parsed.sheetsApiUrl.trim();
+          }
+        } catch {}
       }
     }
     return DEFAULT_SHEETS_URL;
